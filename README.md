@@ -10,6 +10,10 @@ Adquirir los conocimientos esenciales para realizar aplicaciones web dinámicas 
 
 Con el Demo Day se pretende que los beneficiarios demuestren todos sus conocimientos adquiridos a empresas Nacionales e Internacionales, con esto pueden vivir la experiencia de exponer un proyecto y una idea de negocio al mundo.
 
+# 📹 Video explicado:
+
+[¿Como hacer el proyecto DemoDay?](https://drive.google.com/file/d/1kzQ5TuYc0NuIH6qGe5_Wr3Fnrjd5qKJp/view)
+
 # ☕ Pasos para desarrollar el DemoDay:
 
 1. Crear un proyecto con la plantilla Basic Kanban y en la descripción colocar:
