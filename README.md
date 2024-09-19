@@ -1,18 +1,18 @@
 # 👋🏼 Bienvenid@ al Demo Day.
 
-<h3 align="center"><strong>!Bienvenido a tu ultimo proyecto en Academia Geek 🤖,  estamos muy a gusto en que seas parte de nuestra comunidad y poder apoyarte en tu crecimiento profesional en el maravilloso mundo del desarrollo del software!</strong></h3>
+<h3 align="center"><strong>!Bienvenido a tu ultimo proyecto en Campus Virtual 🤖,  estamos muy a gusto en que seas parte de nuestra comunidad y poder apoyarte en tu crecimiento profesional en el maravilloso mundo del desarrollo del software!</strong></h3>
 
 En este Proyecto a realizar vas a evidenciar los conceptos adquiridos en todo este proceso de aprendizaje como React Js, JavaScript, Redux y Firebase.
 
 # 🎯 Objetivo del DemoDay:
 
-Adquirir los conocimientos esenciales para realizar aplicaciones web dinámicas haciendo uso de JavaScript Vanilla. 
+Adquirir los conocimientos esenciales para realizar aplicaciones web dinámicas haciendo uso de JavaScript Vanilla, React, Redux 
 
 Con el Demo Day se pretende que los beneficiarios demuestren todos sus conocimientos adquiridos a empresas Nacionales e Internacionales, con esto pueden vivir la experiencia de exponer un proyecto y una idea de negocio al mundo.
 
 # 📹 Video explicado:
 
-[¿Como hacer el proyecto DemoDay?](https://drive.google.com/file/d/1kzQ5TuYc0NuIH6qGe5_Wr3Fnrjd5qKJp/view)
+[¿Como hacer el proyecto DemoDay?]()
 
 # ☕ Pasos para desarrollar el DemoDay:
 
@@ -45,10 +45,16 @@ Todo esto usando markdown
 >- Guía de estilos
 >- Landing Page del producto
 >- Diseño responsive
+>- Usar Redux ó Zustand
 >- Autenticación con Google y Facebook
 >- Enrutamiento dinámico con protección de rutas
->- Crud con Firebase
+>- 3 Crud con Firestore
 >- Imágenes y/o videos en la nube
+>- Aplicación de Formularios con Formik y Validaciones con Yup (Las contraseñas deben contener entre 8 a 10 caracteres entre Mayúsculas, minúsculas y números)
+>- Uso de TypeScript
+>- Al menos 2 componentes con Pruebas Unitarias con Jest
+>- Implementar un Plus en su proyecto
+
 
 5. Aquellos issues que consideren crear para su proceso de desarrollo se deben adjuntar al milestone de Componente Técnico.
 
