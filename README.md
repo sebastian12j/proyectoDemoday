@@ -1,18 +1,14 @@
 # 👋🏼 Bienvenid@ al Demo Day.
 
-<h3 align="center"><strong>!Bienvenido a tu ultimo proyecto en Campus Virtual 🤖,  estamos muy a gusto en que seas parte de nuestra comunidad y poder apoyarte en tu crecimiento profesional en el maravilloso mundo del desarrollo del software!</strong></h3>
+<h3 align="center"><strong>!Bienvenido a tu ultimo proyecto en Agile Innova Academy 🤖, estamos muy contentos de que seas parte de nuestra comunidad y poder apoyarte en tu crecimiento profesional en el maravilloso mundo del desarrollo de software!</strong></h3>
 
-En este Proyecto a realizar vas a evidenciar los conceptos adquiridos en todo este proceso de aprendizaje como React Js, JavaScript, Redux y Firebase.
+En este proyecto vas a poner en evidencia todos los conocimientos adquiridos en todo este proceso de aprendizaje, tales como ReactJS, JavaScript, TypeScript, Redux y Firebase.
 
 # 🎯 Objetivo del DemoDay:
 
-Adquirir los conocimientos esenciales para realizar aplicaciones web dinámicas haciendo uso de JavaScript Vanilla, React, Redux 
+Adquirir los conocimientos esenciales para realizar aplicaciones web dinámicas haciendo uso de React. 
 
 Con el Demo Day se pretende que los beneficiarios demuestren todos sus conocimientos adquiridos a empresas Nacionales e Internacionales, con esto pueden vivir la experiencia de exponer un proyecto y una idea de negocio al mundo.
-
-# 📹 Video explicado:
-
-[¿Como hacer el proyecto DemoDay?]()
 
 # ☕ Pasos para desarrollar el DemoDay:
 
