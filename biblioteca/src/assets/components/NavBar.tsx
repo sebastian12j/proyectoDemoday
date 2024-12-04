@@ -4,28 +4,27 @@ import { Link } from "react-router-dom";
 import { useAuth } from "./AuthContext"; // Contexto de autenticación
 import { db } from "../components/Credenciales"; // Conexión a Firestore
 
-
-import imagenes from "../images.jpeg"; 
+import imagenes from "../images.jpeg";
 
 interface User {
-  photoURL: string; 
+  photoURL: string;
 }
 
 export function NavBar() {
-  const [menuVisible, setMenuVisible] = useState(false); 
-  const [photoURL, setPhotoURL] = useState<string | null>(null); 
-  const { user } = useAuth(); 
+  const [menuVisible, setMenuVisible] = useState(false);
+  const [photoURL, setPhotoURL] = useState<string | null>(null);
+  const { user } = useAuth();
   useEffect(() => {
     if (!user) return;
 
     const fetchUserData = async () => {
       try {
-        const userDocRef = doc(db, "users", user.uid); 
+        const userDocRef = doc(db, "users", user.uid);
         const userDoc = await getDoc(userDocRef);
 
         if (userDoc.exists()) {
           const data = userDoc.data();
-          setPhotoURL(data.photoURL || null); 
+          setPhotoURL(data.photoURL || null);
         } else {
           console.log("El documento del usuario no existe.");
         }
@@ -35,9 +34,8 @@ export function NavBar() {
     };
 
     fetchUserData();
-  }, [user]); 
+  }, [user]);
 
-  
   const openMenu = () => {
     setMenuVisible(true);
   };
@@ -49,11 +47,10 @@ export function NavBar() {
   return (
     <div className="nad">
       <div className="todoo">
-        
         <button className="abrir-menu" onClick={openMenu}>
           <img
             className="imagenes-perfil"
-            src={photoURL || imagenes} 
+            src={photoURL || imagenes}
             alt="Abrir menú"
           />
         </button>
@@ -66,33 +63,23 @@ export function NavBar() {
 
           <ul className="menu-list">
             <li>
-              <Link to="/perfil">
-                Settings... 
-              </Link>
+              <Link to="/perfil">perfil...</Link>
             </li>
-            
+
             <li>
-            <Link to="/perfil">
-                Settings... 
-              </Link>
+              <Link to="/perfil">Settings...</Link>
             </li>
-            
+
             <li>
-            <Link to="/perfil">
-                Settings... 
-              </Link>
+              <Link to="/perfil">Settings...</Link>
             </li>
-            
+
             <li>
-            <Link to="/perfil">
-                Settings... 
-              </Link>
+              <Link to="/perfil">Settings...</Link>
             </li>
-            
+
             <li>
-            <Link to="/perfil">
-                Settings... 
-              </Link>
+              <Link to="/perfil">Settings...</Link>
             </li>
           </ul>
         </div>
@@ -101,11 +88,6 @@ export function NavBar() {
         <p>Hi</p>
         <p>{user?.displayName || "Nombre"}</p>
       </div>
-
-     
-     
-
-      
     </div>
   );
 }

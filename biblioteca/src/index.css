@@ -23,6 +23,12 @@ a:hover {
 }
 
 body {
+  object-fit: contain;  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: grid;
+  place-items: center;
   margin: 0;
   display: flex;
   place-items: center;
@@ -77,7 +83,7 @@ button:focus-visible {
   align-items: center;
   justify-content: space-between;
   padding: 2rem;
-  position: absolute;
+  position: relative;
   top: 0;
   left: 0;
   
@@ -128,13 +134,13 @@ button:focus-visible {
     opacity: 0;
     visibility: hidden;
     display: flex;
-    flex-direction: column;
+   
     align-items: center;
     gap: 1rem;
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 50%;
     height: 190%;
     background-color: rgba(0, 0, 0, 0.9);
     padding: 2rem;
@@ -163,3 +169,56 @@ button:focus-visible {
  
   }
   
+  /**********cards***********************/
+  .proj-imgbx {
+    position: relative;
+    border-radius: 30px;
+    overflow: hidden;
+    margin-bottom: 24px;
+  }
+  .proj-imgbx::before {
+    content: "";
+    background: linear-gradient(90.21deg, #3638aa -5.91%, #4a2fbd 111.58%);
+    opacity: 0.85;
+    position: absolute;
+    width: 100%;
+    height: 0;
+    transition: 0.4s ease-in-out;
+  }
+  .proj-imgbx:hover::before {
+    height: 100%;
+  }
+  .proj-txtx {
+    position: absolute;
+    text-align: center;
+    top: 65%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    transition: 0.5s ease-in-out;
+    opacity: 0;
+    width: 100%;
+  }
+  .proj-imgbx:hover .proj-txtx {
+    top: 50%;
+    opacity: 1;
+  }
+  .proj-txtx h4 {
+    font-size: 30px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+    line-height: 1.1em;
+  }
+  .proj-txtx span {
+    font-style: italic;
+    font-weight: 400;
+    font-size: 15px;
+    letter-spacing: 0.8px;
+  }
+  .background-image-right {
+    top: 20%;
+    position: absolute;
+    bottom: 0;
+    width: 35%;
+    right: 0;
+    z-index: -4;
+  }
