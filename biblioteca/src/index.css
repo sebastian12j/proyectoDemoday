@@ -66,3 +66,100 @@ button:focus-visible {
     background-color: #f9f9f9;
   }
 }
+
+/**********menu**********************/
+.todoo {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 2rem;
+  position: absolute;
+  top: 0;
+  left: 0;
+  
+}
+
+.logo {
+  max-width: 5rem;
+}
+
+.menu-list {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  list-style-type: none;
+  display: flex;
+  gap: 1rem;
+}
+
+.menu-list li a {
+  text-decoration: none;
+  color: #1c1c1c;
+}
+
+.abrir-menu,
+.cerrar-menu {
+  display: none;
+}
+
+@media screen and (max-width: 10000px) {
+  .abrir-menu,
+  .cerrar-menu {
+    display: block;
+    border: 0;
+    font-size: 1.25rem;
+    background-color: transparent;
+    cursor: pointer;
+  }
+
+  .abrir-menu {
+    color: #1c1c1c;
+  }
+
+  .cerrar-menu {
+    color: #ececec;
+  }
+
+  .menu {
+    opacity: 0;
+    visibility: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 190%;
+    background-color: rgba(0, 0, 0, 0.9);
+    padding: 2rem;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+  }
+
+  .menu.visible {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  .menu-list {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu-list li a {
+    color: #ececec;
+  }
+}
+
+.imagenes-perfil{
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+ 
+  }
+  
