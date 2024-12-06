@@ -1,16 +1,16 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { Card } from "../components/Card";
 import { NavBar } from "../components/NavBar";
 import { Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import cuento1 from "../cuento1.jpg";
-import cuento2 from "../cuento2.avif";
-import cuento3 from "../cuento3.png";
-import cuento4 from "../cuento4.jpeg";
-import cuento5 from "../cuento5.jpg";
-import cuento6 from "../cuento6.avif";
-import cuento7 from "../cuento7.jpg";
+import cuento1 from "../img/cuento1.jpg";
+import cuento2 from "../img/cuento2.avif";
+import cuento3 from "../img/cuento3.png";
+import cuento4 from "../img/cuento3.png";
+import cuento5 from "../img/cuento4.jpeg";
+import cuento6 from "../img/cuento6.avif";
+import cuento7 from "../img/cuento7.jpg";
 
 interface Cuento {
   id: number;
@@ -112,12 +112,12 @@ export function Inicio() {
             <img
               src={selectedCuento.imgUrl}
               alt={selectedCuento.title}
-              style={{ width: "100%", height: "auto", marginBottom: "1rem" }}
+              style={{ width: "50%", height: "auto", marginBottom: "1rem" }}
             />
             <p>{selectedCuento.description}</p>
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleCloseModal}>
+            <Button variant="secondary" onClick={handleCloseModal} className="cerrar">
               Cerrar
             </Button>
           </Modal.Footer>

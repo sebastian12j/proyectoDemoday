@@ -9,7 +9,7 @@ import {
 import { auth, db } from "../components/Credenciales";
 import { doc, setDoc, updateDoc, arrayUnion } from "firebase/firestore";
 
-// Definición de la interfaz para el contexto
+
 interface AuthContextType {
   user: User | null;
   googleSignIn: () => Promise<void>;
@@ -17,10 +17,10 @@ interface AuthContextType {
   addExercise: (exercise: string) => Promise<void>;
 }
 
-// Crear el contexto
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Definición de los props del proveedor
+
 interface AuthProviderProps {
   children: ReactNode;
 }
@@ -62,11 +62,11 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   };
 
   const addExercise = async (exercise: string) => {
-    if (!user) return; // Verificamos si hay un usuario autenticado
+    if (!user) return; 
     try {
       const userRef = doc(db, "users", user.uid);
       await updateDoc(userRef, {
-        exercises: arrayUnion(exercise), // Agregamos el ejercicio al array
+        exercises: arrayUnion(exercise), 
       });
       console.log("Ejercicio agregado:", exercise);
     } catch (error) {
@@ -88,7 +88,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   );
 };
 
-// Hook personalizado para usar el contexto
+
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (!context) {

@@ -28,7 +28,7 @@ function Example() {
           escape key.
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="secondary" onClick={handleClose}>
+          <Button variant="secondary" onClick={handleClose} className="close" >
             Close
           </Button>
           <Button variant="primary">Understood</Button>

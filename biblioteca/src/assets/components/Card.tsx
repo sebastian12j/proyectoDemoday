@@ -26,11 +26,15 @@ export const Card: React.FC<CardProps> = ({ title, description, imgUrl, onClick 
           src={imgUrl}
           alt={title}
           style={{
-            margin: "0 auto", 
+            
+            margin: "3%", 
             borderRadius: "8px",
+            width: "40%",
+            display: "flex",
+
           }}
         />
-        <div className="proj-txtx" style={{ textAlign: "center", marginTop: "10px" }}>
+        <div className="proj-txtx" style={{ textAlign: "center", margin: "5px" }}>
           <h4>{title}</h4>
           <span>{description}</span>
         </div>

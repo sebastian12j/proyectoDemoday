@@ -24,8 +24,8 @@ a:hover {
 
 body {
   object-fit: contain;  
-  display: flex;
-  align-items: center;
+  flex-grow: 5;
+  align-items:flex-start;
   justify-content: center;
   display: grid;
   place-items: center;
@@ -34,6 +34,7 @@ body {
   place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  background-color: #868686;
 }
 
 h1 {
@@ -86,7 +87,7 @@ button:focus-visible {
   position: relative;
   top: 0;
   left: 0;
-  
+  background-color: #1ddfd5;
 }
 
 .logo {
@@ -140,11 +141,12 @@ button:focus-visible {
     position: absolute;
     top: 0;
     left: 0;
-    width: 50%;
-    height: 190%;
-    background-color: rgba(0, 0, 0, 0.9);
+    width: 30%;
+    height: 150%;
+    background-color: #1ddfd5;
     padding: 2rem;
     transition: opacity 0.3s ease, visibility 0.3s ease;
+    z-index: 100;
   }
 
   .menu.visible {
@@ -175,10 +177,12 @@ button:focus-visible {
     border-radius: 30px;
     overflow: hidden;
     margin-bottom: 24px;
+    display: flex;
+    flex-wrap: wrap;
   }
   .proj-imgbx::before {
     content: "";
-    background: linear-gradient(90.21deg, #3638aa -5.91%, #4a2fbd 111.58%);
+    background: linear-gradient(90.21deg, #1ddfd5 -5.91%, #1ddfd5 111.58%);
     opacity: 0.85;
     position: absolute;
     width: 100%;
@@ -221,4 +225,10 @@ button:focus-visible {
     width: 35%;
     right: 0;
     z-index: -4;
+  }
+
+  .cerrar{
+    width: 35%;
+    color: #1a1a1a;
+    background-color: #1ddfd5;
   }

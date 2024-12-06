@@ -1,14 +1,14 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore"; // Importar funciones de Firestore
 import { Link } from "react-router-dom";
 import { useAuth } from "./AuthContext"; // Contexto de autenticación
 import { db } from "../components/Credenciales"; // Conexión a Firestore
 
-import imagenes from "../images.jpeg";
+import imagenes from "../img/images.jpeg";
 
-interface User {
-  photoURL: string;
-}
+// interface User {
+//   photoURL: string;
+// }
 
 export function NavBar() {
   const [menuVisible, setMenuVisible] = useState(false);
@@ -63,23 +63,23 @@ export function NavBar() {
 
           <ul className="menu-list">
             <li>
-              <Link to="/perfil">perfil...</Link>
+              <Link to="/perfil">Perfil</Link>
             </li>
 
             <li>
-              <Link to="/perfil">Settings...</Link>
+              <Link to="/test">Test</Link>
             </li>
 
             <li>
-              <Link to="/perfil">Settings...</Link>
+              <Link to="/favoritos">Favoritos</Link>
             </li>
 
             <li>
-              <Link to="/perfil">Settings...</Link>
+              <Link to="/calificaciones">Calificaciones</Link>
             </li>
 
             <li>
-              <Link to="/perfil">Settings...</Link>
+              <Link to="/inicio">Inicio</Link>
             </li>
           </ul>
         </div>
