@@ -86,7 +86,7 @@ export function NavBar() {
 
         {/* Saludo y nombre */}
         <p>Hi</p>
-        <p>{user?.displayName || "Nombre"}</p>
+        <p>{user?.displayName || "Usuario"}</p>
       </div>
     </div>
   );
