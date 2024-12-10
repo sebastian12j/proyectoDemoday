@@ -92,7 +92,7 @@ export function Inicio() {
             title={cuento.title}
             description={cuento.description}
             imgUrl={cuento.imgUrl}
-            onClick={() => handleShowModal(cuento)} // Manejo del clic en la tarjeta
+            onClick={() => handleShowModal(cuento)} 
           />
         ))}
       </Row>

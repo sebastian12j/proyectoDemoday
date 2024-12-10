@@ -9,18 +9,31 @@ import {
 import { auth, db } from "../components/Credenciales";
 import { doc, setDoc, updateDoc, arrayUnion } from "firebase/firestore";
 
-// Definición de la interfaz para el contexto
+interface FirestoreUser {
+  email: string | null;
+  displayName: string | null;
+  photoURL: string | null;
+  createdAt: Date;
+  librosSubidos: {
+    id: number;
+    nombre: string;
+    resumen: string;
+    imgUrl: string;
+    preguntas: string[];
+    respuestas: string[];
+    link: string;
+  }[];
+}
+
 interface AuthContextType {
   user: User | null;
   googleSignIn: () => Promise<void>;
   logOut: () => Promise<void>;
-  addExercise: (exercise: string) => Promise<void>;
+  addLibro: (libro: FirestoreUser["librosSubidos"][0]) => Promise<void>;
 }
 
-// Crear el contexto
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Definición de los props del proveedor
 interface AuthProviderProps {
   children: ReactNode;
 }
@@ -29,6 +42,7 @@ interface AuthProviderProps {
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
 
+  // Iniciar sesión con Google
   const googleSignIn = async () => {
     const provider = new GoogleAuthProvider();
     try {
@@ -36,14 +50,15 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const loggedUser = result.user;
       setUser(loggedUser);
 
-      // Guardar usuario en Firestore
-      const userDoc = {
+      
+      const userDoc: FirestoreUser = {
         email: loggedUser.email,
         displayName: loggedUser.displayName,
         photoURL: loggedUser.photoURL,
         createdAt: new Date(),
-        exercises: [] as string[], // Especificamos que es un array de strings
+        librosSubidos: [],
       };
+
       await setDoc(doc(db, "users", loggedUser.uid), userDoc, { merge: true });
       console.log("Usuario guardado en Firestore:", userDoc);
     } catch (error) {
@@ -51,6 +66,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
+  
   const logOut = async () => {
     try {
       await signOut(auth);
@@ -61,19 +77,21 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const addExercise = async (exercise: string) => {
-    if (!user) return; // Verificamos si hay un usuario autenticado
+  // Agregar libro al usuario actual
+  const addLibro = async (libro: FirestoreUser["librosSubidos"][0]) => {
+    if (!user) return; // Verificar si el usuario está autenticado
     try {
       const userRef = doc(db, "users", user.uid);
       await updateDoc(userRef, {
-        exercises: arrayUnion(exercise), // Agregamos el ejercicio al array
+        librosSubidos: arrayUnion(libro), // Agregar nuevo libro al array
       });
-      console.log("Ejercicio agregado:", exercise);
+      console.log("Libro agregado:", libro);
     } catch (error) {
-      console.error("Error al agregar ejercicio:", (error as Error).message);
+      console.error("Error al agregar libro:", (error as Error).message);
     }
   };
 
+  // Mantener sincronización con el estado de autenticación
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
@@ -82,13 +100,13 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, googleSignIn, logOut, addExercise }}>
+    <AuthContext.Provider value={{ user, googleSignIn, logOut, addLibro }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-// Hook personalizado para usar el contexto
+// Hook para usar el contexto de autenticación
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (!context) {

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { doc, getDoc } from "firebase/firestore"; // Importar funciones de Firestore
+import { doc, getDoc } from "firebase/firestore"; 
 import { Link } from "react-router-dom";
-import { useAuth } from "./AuthContext"; // Contexto de autenticación
-import { db } from "../components/Credenciales"; // Conexión a Firestore
+import { useAuth } from "./AuthContext"; 
+import { db } from "../components/Credenciales"; 
 
 import imagenes from "../images.jpeg";
 
