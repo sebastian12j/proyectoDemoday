@@ -5,6 +5,8 @@ import { DivContainer, FormStyle } from "./Styled";
 import Swal from "sweetalert2";
 import { Modal, Button } from "react-bootstrap";
 import { collection, addDoc } from "firebase/firestore";
+import NavBar from "./NavBar";
+
 
 interface Pregunta {
   pregunta: string;
@@ -126,6 +128,7 @@ export function SubirData() {
 
   return (
     <DivContainer>
+      <NavBar/>
       <h1>Subir Libro</h1>
       <FormStyle onSubmit={handleSubmit}>
         <input

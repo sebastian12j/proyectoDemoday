@@ -13,13 +13,9 @@ const Start: React.FC = () => {
       onClick={handleClick}
       style={{
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
-        cursor: 'pointer',
-        backgroundColor: '#868686'
+        cursor: 'pointer'
       }}
-    >
+   >
             <img src={('https://res.cloudinary.com/anye/image/upload/v1733525436/Vamos_bhrt3o.png')} width={150} border-radius={1000} />
     </div>
   );
