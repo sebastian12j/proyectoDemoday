@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { getAuth, signInWithEmailAndPassword, signInWithPopup, FacebookAuthProvider, GoogleAuthProvider } from 'firebase/auth';
 
@@ -8,11 +8,19 @@ const Login: React.FC = () => {
   const auth = getAuth();
   const navigate = useNavigate();
 
+  useEffect(() => {
+    const isConfirmed = localStorage.getItem('isConfirmed');
+    if (isConfirmed === 'true') {
+      // No redirigir automáticamente a perfil, solo guardar el estado
+    }
+  }, []);
+
   const handleLogin = async () => {
     try {
       await signInWithEmailAndPassword(auth, email, password);
+      localStorage.setItem('email', email); // Guardar el email en localStorage
       alert('Inicio de sesión exitoso');
-      navigate('/confirmar');
+      navigate('/inicio');
     } catch (error: any) {
       if (error.code === 'auth/user-not-found') {
         alert('Debes registrarte para iniciar sesión');
@@ -22,25 +30,31 @@ const Login: React.FC = () => {
     }
   };
 
-  const handleFacebookLogin = async () => {
-    const provider = new FacebookAuthProvider();
-    try {
-      await signInWithPopup(auth, provider);
-      alert('Inicio de sesión con Facebook exitoso');
-      navigate('/confirmar');
-    } catch (error) {
-      alert('Error al iniciar sesión con Facebook: ' + error.message);
-    }
-  };
-
   const handleGoogleLogin = async () => {
     const provider = new GoogleAuthProvider();
     try {
-      await signInWithPopup(auth, provider);
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      localStorage.setItem('email', user.email || '');
+      localStorage.setItem('photoURL', user.photoURL || '');
       alert('Inicio de sesión con Google exitoso');
-      navigate('/confirmar');
+      navigate('/inicio');
     } catch (error) {
       alert('Error al iniciar sesión con Google: ' + error.message);
+    }
+  };
+
+  const handleFacebookLogin = async () => {
+    const provider = new FacebookAuthProvider();
+    try {
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+      localStorage.setItem('email', user.email || '');
+      localStorage.setItem('photoURL', user.photoURL || '');
+      alert('Inicio de sesión con Facebook exitoso');
+      navigate('/inicio');
+    } catch (error) {
+      alert('Error al iniciar sesión con Facebook: ' + error.message);
     }
   };
 
@@ -151,7 +165,6 @@ const iconStyle: React.CSSProperties = {
 };
 
 export default Login;
-
 
 
 

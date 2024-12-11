@@ -14,6 +14,8 @@ const Confirmar: React.FC = () => {
     if (user) {
       try {
         await updatePassword(user, password);
+        localStorage.setItem('documentType', documentType);
+        localStorage.setItem('documentNumber', documentNumber);
         alert('Confirmación exitosa');
         navigate('/inicio');
       } catch (error: any) {

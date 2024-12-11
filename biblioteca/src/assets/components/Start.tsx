@@ -10,13 +10,16 @@ const Start: React.FC = () => {
 
   return (
     <div
+    
       onClick={handleClick}
       style={{
         display: 'flex',
         cursor: 'pointer'
       }}
-   >
+    >       
             <img src={('https://res.cloudinary.com/anye/image/upload/v1733525436/Vamos_bhrt3o.png')} width={150} border-radius={1000} />
+            
+            
     </div>
   );
 };

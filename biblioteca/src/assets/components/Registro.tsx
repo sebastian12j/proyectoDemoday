@@ -12,11 +12,14 @@ const Registro: React.FC = () => {
 
   const handleRegister = async () => {
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+      const user = userCredential.user;
+      localStorage.setItem('email', email);
       localStorage.setItem('documentType', documentType);
       localStorage.setItem('documentNumber', documentNumber);
+      localStorage.setItem('photoURL', user.photoURL || '');
       alert('Registro exitoso');
-      navigate('/perfil');
+      navigate('/inicio');
     } catch (error: any) {
       alert('Error al registrarse: ' + error.message);
     }
@@ -62,12 +65,6 @@ const Registro: React.FC = () => {
           value={documentType}
           onChange={(e) => setDocumentType(e.target.value)}
         />
-
-        {/* <select name="select" id="tipoId" class="input1" style="height: 60px;" onclick="hideShowCtrl()">
-    <option value="CC" selected="">Cedula de cuidadania</option>
-    <option value="TI" selected="">Tarjeta de identidad</option>
-    <option value="P" selected="">Pasaporte</option>
-    </select> */}
 
         <label>Número de documento</label>
         <input
