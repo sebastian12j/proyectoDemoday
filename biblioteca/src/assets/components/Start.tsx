@@ -23,16 +23,16 @@ const Start: React.FC = () => {
       }}
     >       
            
-            <h1 style={{ color: '#ff3381', fontSize: '4rem', marginBottom: '10px' , letterSpacing: '0.3em' }}>
+      <h1 style={{ color: '#ff3381', fontSize: '4rem', marginBottom: '10px' , letterSpacing: '0.2em', font: 'fantasy' }}>
         READ
       </h1>
-      <h1 style={{ color: '#00cc66', fontSize: '4rem', margin: '0', letterSpacing: '0.3em' }}>
+      <h1 style={{ color: '#00cc66', fontSize: '4rem', margin: '0', letterSpacing: '0.2em', font: 'fantasy' }}>
         VAMOS
       </h1>
-      <h1 style={{ color: '#ff9900', fontSize: '4rem', margin: '0', letterSpacing: '0.3em' }}>
+      <h1 style={{ color: '#ff9900', fontSize: '4rem', margin: '0', letterSpacing: '0.2em', font: 'fantasy' }}>
         A
       </h1>
-      <h1 style={{ color: '#3366ff', fontSize: '4rem', marginBottom: '20px', letterSpacing: '0.3em' }}>
+      <h1 style={{ color: '#3366ff', fontSize: '4rem', marginBottom: '20px', letterSpacing: '0.2em', font: 'fantasy' }}>
         LEER
       </h1>
 <button>Empezar</button>

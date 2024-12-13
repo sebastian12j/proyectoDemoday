@@ -127,9 +127,13 @@ export function SubirData() {
   };
 
   return (
+    <>
+    <NavBar/>
     <DivContainer>
-      <NavBar/>
-      <h1>Subir Libro</h1>
+      
+      <h1 style={{
+            fontFamily: 'sans-serif'
+          }}>Subir Libro</h1>
       <FormStyle onSubmit={handleSubmit}>
         <input
           type="text"
@@ -138,6 +142,13 @@ export function SubirData() {
           value={libroData.nombre || ""}
           onChange={handleChange}
           required
+          style={{
+            padding: '10px',
+            border: 'none',
+            borderRadius: '5px',
+            fontSize: '1.2rem',
+            cursor: 'pointer',
+          }}
         />
         <textarea
           name="resumen"
@@ -145,6 +156,13 @@ export function SubirData() {
           value={libroData.resumen || ""}
           onChange={handleChange}
           required
+          style={{
+            padding: '10px',
+            border: 'none',
+            borderRadius: '5px',
+            fontSize: '1.2rem',
+            cursor: 'pointer',
+          }}
         />
         <input
           type="text"
@@ -153,6 +171,13 @@ export function SubirData() {
           value={libroData.imgUrl || ""}
           onChange={handleChange}
           required
+          style={{
+            padding: '10px',
+            border: 'none',
+            borderRadius: '5px',
+            fontSize: '1.2rem',
+            cursor: 'pointer',
+          }}
         />
         <input
           type="text"
@@ -161,6 +186,13 @@ export function SubirData() {
           value={libroData.link || ""}
           onChange={handleChange}
           required
+          style={{
+            padding: '10px',
+            border: 'none',
+            borderRadius: '5px',
+            fontSize: '1.2rem',
+            cursor: 'pointer',
+          }}
         />
         <Button type="button" onClick={() => setShowModal(true)}>
           Agregar Preguntas
@@ -171,6 +203,10 @@ export function SubirData() {
           onHide={() => setShowModal(false)}
           backdrop="static"
           keyboard={false}
+          style={{
+            fontFamily: 'sans-serif'
+          }}
+          
         >
           <Modal.Header>
             <Modal.Title>Preguntas y Respuestas</Modal.Title>
@@ -186,6 +222,14 @@ export function SubirData() {
                     handlePreguntaChange(index, "pregunta", e.target.value)
                   }
                   required
+                  style={{
+                    padding: '10px',
+                    border: 'none',
+                    borderRadius: '5px',
+                    fontSize: '1.2rem',
+                    cursor: 'pointer',
+                    wordSpacing: '25px',
+                  }}
                 />
                 {preg.opciones.map((opcion, opcionIndex) => (
                   <div key={opcionIndex}>
@@ -197,6 +241,13 @@ export function SubirData() {
                         handleOpcionChange(index, opcionIndex, "texto", e.target.value)
                       }
                       required
+                      style={{
+                        padding: '10px',
+                        border: 'none',
+                        borderRadius: '5px',
+                        fontSize: '1.2rem',
+                        cursor: 'pointer',
+                      }}
                     />
                     <label>
                       <input
@@ -227,5 +278,6 @@ export function SubirData() {
         <button type="submit">Subir</button>
       </FormStyle>
     </DivContainer>
+    </>
   );
 }

@@ -22,10 +22,11 @@ button {
   padding: 1.6em 4.2em;
   font-size: 1em;
   font-weight: 500;
-  font-family: inherit;
+  font-family: sans-serif;
   background-color: #008037;
   cursor: pointer;
   transition: border-color 0.25s;
+  color: #ffff;
 }
 button:hover {
   border-color: #646cff;

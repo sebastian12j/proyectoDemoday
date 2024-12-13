@@ -71,7 +71,7 @@ const Confirmar: React.FC = () => {
         style={{
           width: '200px',
           padding: '10px',
-          backgroundColor: '#28a745',
+          backgroundColor: '#008037',
           color: 'white',
           border: 'none',
           borderRadius: '5px',

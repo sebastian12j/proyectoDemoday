@@ -17,7 +17,7 @@ export const Logo = styled.div`
 `;
 
 export const DivContainer = styled.div`
-  padding: 30px;
+  padding: 50px;
   margin: 0 auto;
   max-width: 400px;
   mix-height: 200px;
