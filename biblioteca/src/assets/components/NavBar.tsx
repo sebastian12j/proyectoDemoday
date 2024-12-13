@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { useAuth } from "./AuthContext"; 
 import { db } from "../components/Credenciales"; 
 
-import imagenes from "../img/images.jpeg";
+import imagenes from "../img/Vamos (1).png";
 
 // interface User {
 //   photoURL: string;
@@ -85,8 +85,8 @@ export function NavBar() {
         </div>
 
         {/* Saludo y nombre */}
-        <p>Hi</p>
-        <p>{user?.displayName || "Usuario"}</p>
+
+        <p>Hola, {user?.displayName || "Usuario"}</p>
       </div>
     </div>
   );

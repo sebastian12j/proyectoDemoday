@@ -214,7 +214,7 @@ export function SubirData() {
               </div>
             ))}
             <Button variant="secondary" onClick={handleAddPregunta}>
-              Agregar otra pregunta
+              Agregar pregunta
             </Button>
           </Modal.Body>
           <Modal.Footer>

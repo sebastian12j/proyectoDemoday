@@ -10,7 +10,7 @@ interface CardProps {
 export const Card: React.FC<CardProps> = ({ title, description, imgUrl, onClick }) => {
   return (
     <Col
-      size={12}
+      size={3}
       sm={6}
       md={4}
       style={{
@@ -29,7 +29,7 @@ export const Card: React.FC<CardProps> = ({ title, description, imgUrl, onClick 
             
             margin: "3%", 
             borderRadius: "8px",
-            width: "40%",
+            width: "100px",
             display: "flex",
 
           }}
