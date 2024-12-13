@@ -38,7 +38,7 @@ const Confirmar: React.FC = () => {
         fontFamily: 'Arial, sans-serif',
       }}
     >
-      <h1 style={{ color: '#3366ff', fontSize: '2.5rem', marginBottom: '20px' }}>
+      <h1 style={{ color: '#3366ff', fontSize: '2.5rem', marginBottom: '20px', fontFamily: 'cursive' }}>
         Confirmar Registro
       </h1>
       <div style={{ width: '1148px' }}>
@@ -78,6 +78,7 @@ const Confirmar: React.FC = () => {
           fontSize: '1.2rem',
           cursor: 'pointer',
           marginTop: '20px',
+          fontFamily: 'cursive'
         }}
         onClick={handleConfirm}
       >

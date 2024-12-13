@@ -75,16 +75,16 @@ const Login: React.FC = () => {
       }}
     >
       {/* Título */}
-      <h1 style={{ color: '#ff3381', fontSize: '2.5rem', marginBottom: '10px' }}>
+      <h1 style={{ color: '#ff3381', fontSize: '2.5rem', marginBottom: '10px', fontFamily: 'cursive' }}>
         READ
       </h1>
-      <h1 style={{ color: '#00cc66', fontSize: '2rem', margin: '0' }}>
+      <h1 style={{ color: '#00cc66', fontSize: '2rem', margin: '0', fontFamily: 'cursive' }}>
         VAMOS
       </h1>
-      <h1 style={{ color: '#ff9900', fontSize: '2rem', margin: '0' }}>
+      <h1 style={{ color: '#ff9900', fontSize: '2rem', margin: '0', fontFamily: 'cursive' }}>
         A
       </h1>
-      <h1 style={{ color: '#3366ff', fontSize: '2rem', marginBottom: '20px' }}>
+      <h1 style={{ color: '#3366ff', fontSize: '2rem', marginBottom: '20px', fontFamily: 'cursive' }}>
         LEER
       </h1>
 
@@ -113,7 +113,7 @@ const Login: React.FC = () => {
         Haz olvidado tu contraseña
       </p>
       <p style={{ fontSize: '0.9rem' }}>
-        No tienes cuenta <a href="#" style={{ color: '#007bff' }} onClick={handleRegisterRedirect}>Registrarse</a>
+        No tienes cuenta <a href="#" style={{ color: '#cf5103', fontSize: '0.9rem' }} onClick={handleRegisterRedirect}>Registrarse</a>
       </p>
 
       {/* Redes Sociales */}
