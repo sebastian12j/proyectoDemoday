@@ -34,7 +34,7 @@ export const Card: React.FC<CardProps> = ({ title, description, imgUrl, onClick 
 
           }}
         />
-        <div className="proj-txtx" style={{ textAlign: "center", margin: "5px" }}>
+        <div className="proj-txtx" style={{ textAlign: "center", margin: "5px", width: "100px" }}>
           <h4>{title}</h4>
           <span>{description}</span>
         </div>

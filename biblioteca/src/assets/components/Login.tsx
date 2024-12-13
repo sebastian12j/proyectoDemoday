@@ -89,7 +89,7 @@ const Login: React.FC = () => {
       </h1>
 
       {/* Formulario */}
-      <div style={{ width: '400px' }}>
+      <div style={{ width: '1148px' }}>
         <label>Email</label>
         <input
           type="email"

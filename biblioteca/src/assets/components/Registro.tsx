@@ -40,7 +40,7 @@ const Registro: React.FC = () => {
       <h1 style={{ color: '#3366ff', fontSize: '2.5rem', marginBottom: '20px' }}>
         Registro
       </h1>
-      <div style={{ width: '300px' }}>
+      <div style={{ width: '1148px' }}>
         <label>Email</label>
         <input
           type="email"

@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Login from './Login';
 
 const Start: React.FC = () => {
   const navigate = useNavigate();
@@ -14,11 +15,27 @@ const Start: React.FC = () => {
       onClick={handleClick}
       style={{
         display: 'flex',
-        cursor: 'pointer'
+        cursor: 'pointer',
+        backgroundColor: '#D9DBF1',
+        width: '1147px',
+        padding: '176px',
+        flexWrap: 'wrap'
       }}
     >       
-            <img src={('https://res.cloudinary.com/anye/image/upload/v1734038991/Vamos_vvejdr.png')} width={350} border-radius={1000} />
-            
+           
+            <h1 style={{ color: '#ff3381', fontSize: '4rem', marginBottom: '10px' , letterSpacing: '0.3em' }}>
+        READ
+      </h1>
+      <h1 style={{ color: '#00cc66', fontSize: '4rem', margin: '0', letterSpacing: '0.3em' }}>
+        VAMOS
+      </h1>
+      <h1 style={{ color: '#ff9900', fontSize: '4rem', margin: '0', letterSpacing: '0.3em' }}>
+        A
+      </h1>
+      <h1 style={{ color: '#3366ff', fontSize: '4rem', marginBottom: '20px', letterSpacing: '0.3em' }}>
+        LEER
+      </h1>
+<button>Empezar</button>
             
     </div>
   );

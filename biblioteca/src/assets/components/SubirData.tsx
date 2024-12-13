@@ -172,7 +172,7 @@ export function SubirData() {
           backdrop="static"
           keyboard={false}
         >
-          <Modal.Header closeButton>
+          <Modal.Header>
             <Modal.Title>Preguntas y Respuestas</Modal.Title>
           </Modal.Header>
           <Modal.Body>

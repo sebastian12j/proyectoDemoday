@@ -1,14 +1,14 @@
 import styled from "styled-components";
 
-export const NavBarContainer = styled.nav`
-  width: 100%;
-  height: 60px;
-  background-color: #000;
+export const NavBarContainer = styled.nav `
+  width: 1150px;
+  height: 70px;
+  background-color: #008037;
+  position: relative;
   display: flex;
+  z-index: 1;
+  color: #ffff;
   justify-content: space-between;
-  align-items: center;
-  padding: 0 20px;
-  color: #fff;
 `;
 export const Logo = styled.div`
   font-size: 24px;
@@ -34,10 +34,14 @@ export const MenuUl = styled.ul`
   gap: 20px;
 `;
 
-export const MenuLi = styled.li`
-  font-size: 18px;
-  color: #fff
-  cursor: pointer;
-  &:hover {
-  color: #f39c12}
+// export const MenuLi = styled.li`
+//   font-size: 18px;
+//   color: #fff
+//   cursor: pointer;
+//   &:hover {
+//   color: #f39c12}
+// `;
+
+export const PSaludo = styled.p `
+text-align: center;
 `;

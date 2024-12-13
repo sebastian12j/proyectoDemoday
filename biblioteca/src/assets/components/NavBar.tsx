@@ -3,8 +3,9 @@ import { doc, getDoc } from "firebase/firestore"; // Importar funciones de Fires
 import { Link } from "react-router-dom";
 import { useAuth } from "./AuthContext"; 
 import { db } from "../components/Credenciales"; 
-
+import {NavBarContainer} from "../components/Styled"
 import imagenes from "../img/Vamos (1).png";
+import {PSaludo} from "../components/Styled";
 
 // interface User {
 //   photoURL: string;
@@ -45,8 +46,8 @@ export function NavBar() {
   };
 
   return (
-    <div className="nad">
-      <div className="todoo">
+    <NavBarContainer>
+      
         <button className="abrir-menu" onClick={openMenu}>
           <img
             className="imagenes-perfil"
@@ -84,11 +85,12 @@ export function NavBar() {
           </ul>
         </div>
 
+
         {/* Saludo y nombre */}
 
-        <p>Hola, {user?.displayName || "Usuario"}</p>
-      </div>
-    </div>
+        <PSaludo>Hola, {user?.displayName || "Usuario"}</PSaludo>
+
+    </NavBarContainer>
   );
 }
 
