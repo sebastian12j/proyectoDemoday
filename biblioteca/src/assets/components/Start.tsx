@@ -17,7 +17,8 @@ const Start: React.FC = () => {
         cursor: 'pointer'
       }}
     >       
-            <img src={('https://res.cloudinary.com/anye/image/upload/v1733525436/Vamos_bhrt3o.png')} width={150} border-radius={1000} />
+            <img src={('https://res.cloudinary.com/anye/image/upload/v1733525436/Vamos_bhrt3o.png')} width={580}  />
+         
             
             
     </div>

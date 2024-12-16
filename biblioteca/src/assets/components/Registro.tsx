@@ -7,6 +7,7 @@ const Registro: React.FC = () => {
   const [password, setPassword] = useState('');
   const [documentType, setDocumentType] = useState('');
   const [documentNumber, setDocumentNumber] = useState('');
+  const [userType, setUserType] = useState('estudiante');
   const auth = getAuth();
   const navigate = useNavigate();
 
@@ -18,8 +19,13 @@ const Registro: React.FC = () => {
       localStorage.setItem('documentType', documentType);
       localStorage.setItem('documentNumber', documentNumber);
       localStorage.setItem('photoURL', user.photoURL || '');
+      localStorage.setItem('userType', userType);
       alert('Registro exitoso');
-      navigate('/inicio');
+      if (userType === 'docente') {
+        navigate('/docentes');
+      } else {
+        navigate('/inicio');
+      }
     } catch (error: any) {
       alert('Error al registrarse: ' + error.message);
     }
@@ -65,7 +71,6 @@ const Registro: React.FC = () => {
           value={documentType}
           onChange={(e) => setDocumentType(e.target.value)}
         />
-
         <label>Número de documento</label>
         <input
           type="text"
@@ -74,6 +79,15 @@ const Registro: React.FC = () => {
           value={documentNumber}
           onChange={(e) => setDocumentNumber(e.target.value)}
         />
+        <label>Tipo de usuario</label>
+        <select
+          style={inputStyle}
+          value={userType}
+          onChange={(e) => setUserType(e.target.value)}
+        >
+          <option value="estudiante">Estudiante</option>
+          <option value="docente">Docente</option>
+        </select>
       </div>
       <button
         style={{
@@ -105,4 +119,5 @@ const inputStyle: React.CSSProperties = {
 };
 
 export default Registro;
+
 
