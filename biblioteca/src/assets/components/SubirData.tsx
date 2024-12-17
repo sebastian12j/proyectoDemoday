@@ -131,8 +131,7 @@ export function SubirData() {
     <NavBar/>
     <DivContainer>
       
-      <h1 style={{
-            fontFamily: 'sans-serif'
+      <h1 style={{fontFamily: 'arial', color: '#008037'
           }}>Subir Libro</h1>
       <FormStyle onSubmit={handleSubmit}>
         <input
@@ -162,6 +161,7 @@ export function SubirData() {
             borderRadius: '5px',
             fontSize: '1.2rem',
             cursor: 'pointer',
+            fontFamily: 'arial',
           }}
         />
         <input
@@ -203,9 +203,7 @@ export function SubirData() {
           onHide={() => setShowModal(false)}
           backdrop="static"
           keyboard={false}
-          style={{
-            fontFamily: 'sans-serif'
-          }}
+
           
         >
           <Modal.Header>

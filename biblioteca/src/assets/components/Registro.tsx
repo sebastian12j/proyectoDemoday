@@ -19,7 +19,7 @@ const Registro: React.FC = () => {
       localStorage.setItem('documentNumber', documentNumber);
       localStorage.setItem('photoURL', user.photoURL || '');
       alert('Registro exitoso');
-      navigate('/inicio');
+      navigate('/login');
     } catch (error: any) {
       alert('Error al registrarse: ' + error.message);
     }
@@ -32,15 +32,16 @@ const Registro: React.FC = () => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '100vh',
+        padding: '100px',
         backgroundColor: '#d6dff2',
-        fontFamily: 'Arial, sans-serif',
+        fontFamily: 'Arial',
+        // width: '100%',
       }}
     >
-      <h1 style={{ color: '#3366ff', fontSize: '2.5rem', marginBottom: '20px', fontFamily: 'cursive' }}>
+      <h1 style={{ color: '#3366ff', fontSize: '2.5rem', marginBottom: '70px', fontFamily: 'cursive' }}>
         Registro
       </h1>
-      <div style={{ width: '1148px' }}>
+      <div style={{ width: '250px' }}>
         <label>Email</label>
         <input
           type="email"
@@ -82,11 +83,10 @@ const Registro: React.FC = () => {
           backgroundColor: '#008037',
           color: 'white',
           border: 'none',
-          borderRadius: '5px',
+          borderRadius: '17px',
           fontSize: '1.2rem',
           cursor: 'pointer',
           marginTop: '20px',
-          fontFamily: 'cursive'
         }}
         onClick={handleRegister}
       >
@@ -98,7 +98,7 @@ const Registro: React.FC = () => {
 
 // Estilos reutilizables
 const inputStyle: React.CSSProperties = {
-  width: '100%',
+  width: '98%',
   padding: '10px',
   margin: '10px 0',
   border: '1px solid #ccc',

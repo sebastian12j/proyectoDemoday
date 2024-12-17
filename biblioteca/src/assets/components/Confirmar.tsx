@@ -35,7 +35,7 @@ const Confirmar: React.FC = () => {
         justifyContent: 'center',
         height: '100vh',
         backgroundColor: '#d6dff2',
-        fontFamily: 'Arial, sans-serif',
+        fontFamily: 'arial',
       }}
     >
       <h1 style={{ color: '#3366ff', fontSize: '2.5rem', marginBottom: '20px', fontFamily: 'cursive' }}>
@@ -78,7 +78,6 @@ const Confirmar: React.FC = () => {
           fontSize: '1.2rem',
           cursor: 'pointer',
           marginTop: '20px',
-          fontFamily: 'cursive'
         }}
         onClick={handleConfirm}
       >

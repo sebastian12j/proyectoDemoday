@@ -1,8 +1,13 @@
 import React from 'react'
+import NavBar from './NavBar'
+
 
 const Favoritos = () => {
   return (
-    <div>Favoritos</div>
+    <>
+        <NavBar/>
+        <div>Favoritos</div>
+        </>
   )
 }
 

@@ -69,9 +69,9 @@ const Login: React.FC = () => {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        height: '100vh',
+        // height: '100vh',
         backgroundColor: '#d6dff2',
-        fontFamily: 'Arial, sans-serif',
+        fontFamily: 'Arial',
       }}
     >
       {/* Título */}
@@ -89,7 +89,7 @@ const Login: React.FC = () => {
       </h1>
 
       {/* Formulario */}
-      <div style={{ width: '1148px' }}>
+      <div style={{ width: '400px' }}>
         <label>Email</label>
         <input
           type="email"
@@ -113,7 +113,7 @@ const Login: React.FC = () => {
         Haz olvidado tu contraseña
       </p>
       <p style={{ fontSize: '0.9rem' }}>
-        No tienes cuenta <a href="#" style={{ color: '#cf5103', fontSize: '0.9rem' }} onClick={handleRegisterRedirect}>Registrarse</a>
+        No tienes cuenta <a href="#" style={{ color: '#008037', fontSize: '0.9rem' }} onClick={handleRegisterRedirect}>Registrarse</a>
       </p>
 
       {/* Redes Sociales */}
@@ -130,7 +130,7 @@ const Login: React.FC = () => {
           backgroundColor: '#008037',
           color: 'white',
           border: 'none',
-          borderRadius: '5px',
+          borderRadius: '15px',
           fontSize: '1.2rem',
           cursor: 'pointer',
         }}
@@ -152,7 +152,7 @@ const inputStyle: React.CSSProperties = {
 };
 
 const iconStyle: React.CSSProperties = {
-  width: '40px',
+  width: '50px',
   height: '40px',
   display: 'flex',
   alignItems: 'center',

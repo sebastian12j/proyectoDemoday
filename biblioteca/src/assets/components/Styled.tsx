@@ -1,14 +1,16 @@
 import styled from "styled-components";
 
 export const NavBarContainer = styled.nav `
-  width: 1150px;
+  width: 100%;
   height: 70px;
+  padding: 0 40px;
+  margin: 0;
   background-color: #008037;
   position: relative;
   display: flex;
-  z-index: 1;
   color: #ffff;
   justify-content: space-between;
+  align-items: center;
 `;
 export const Logo = styled.div`
   font-size: 24px;

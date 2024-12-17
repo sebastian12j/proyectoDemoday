@@ -16,7 +16,7 @@ const Perfil: React.FC = () => {
         justifyContent: 'center',
         height: '100vh',
         backgroundColor: '#d6dff2',
-        fontFamily: 'Arial, sans-serif',
+        fontFamily: 'Arial',
       }}
     >
       <h1 style={{ color: '#3366ff', fontSize: '2.5rem', marginBottom: '20px' }}>

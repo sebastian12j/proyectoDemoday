@@ -64,7 +64,8 @@ export function NavBar() {
 
           <ul className="menu-list">
             <li>
-              <Link to="/perfil">Perfil</Link>
+            <Link to="/inicio">Inicio</Link>
+
             </li>
 
             <li>
@@ -80,7 +81,7 @@ export function NavBar() {
             </li>
 
             <li>
-              <Link to="/inicio">Inicio</Link>
+            <Link to="/perfil">Perfil</Link>
             </li>
           </ul>
         </div>
