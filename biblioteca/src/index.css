@@ -1,5 +1,5 @@
 *{
-  margin: 2px;
+  margin: 0;
 }
 
 body {
@@ -12,7 +12,7 @@ body {
   }
   
   a {
-    font-size: 3em;
+    font-size: 20px;
     color: #ececec;
     font-family: arial;
   }
@@ -66,15 +66,14 @@ body {
     color: #ffff;
   }
   
-  @media screen and (max-width: 1000px) {
+  @media screen and (max-width: 10000px) {
     .abrir-menu,
     .cerrar-menu {
       display: block;
       border: 0;
-      font-size: 1.05rem;
+      font-size: 1.25rem;
       background-color: transparent;
       cursor: pointer;
-      color: #ffff;
     }
   
     .abrir-menu {
@@ -94,10 +93,10 @@ body {
       position: absolute;
       top: 0;
       left: 0;
-      width: 10%;
-      height: 60%;
-      background-color: #008037;
-      padding: 1rem;
+      width: 50%;
+      height: 190%;
+      background-color: #008037; 
+      padding: 2rem;
       transition: opacity 0.3s ease, visibility 0.3s ease;
       z-index: 100;
       color: #ffff;
@@ -121,9 +120,9 @@ body {
   }
   
   .imagenes-perfil{
-    width: 40px;
-    height: 40px;
-    border-radius: 45%;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
    
     }
     
@@ -136,7 +135,7 @@ body {
       flex-wrap: wrap;
       align-items: center;
       justify-content: center;
-      height: 300px;
+      width: 50px;
     }
     .proj-imgbx::before {
       content: "";
@@ -188,7 +187,7 @@ body {
       width: 5%;
       border-radius: 8px;
       color: #ffff;
-      background-color: #008037;
+      /* background-color: #008037; */
       align-content: center;
     }
 

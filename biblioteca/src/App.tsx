@@ -1,9 +1,9 @@
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Start from '../src/assets/components/Start';
 import Login from '../src/assets/components/Login';
-import { initializeApp, getApps } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import firebaseConfig from '../src/credenciales';
+// import { initializeApp, getApps } from 'firebase/app';
+// import { getAuth } from 'firebase/auth';
+// import firebaseConfig from '../src/credenciales';
 import Registro from './assets/components/Registro';
 import Confirmar from './assets/components/Confirmar';
 import { Inicio } from './assets/components/Inicio';
@@ -12,11 +12,11 @@ import Perfil from './assets/components/Perfil';
 
 
 // Verifica si ya existe una instancia de Firebase
-if (!getApps().length) {
-initializeApp(firebaseConfig);
-}
+// if (!getApps().length) {
+// initializeApp(firebaseConfig);
+// }
 
-const auth = getAuth();
+// const auth = getAuth();
 
 const App: React.FC = () => {
   return (

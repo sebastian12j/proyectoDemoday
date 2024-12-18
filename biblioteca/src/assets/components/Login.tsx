@@ -21,6 +21,7 @@ const Login: React.FC = () => {
       localStorage.setItem('email', email); // Guardar el email en localStorage
       alert('Inicio de sesión exitoso');
       navigate('/inicio');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       if (error.code === 'auth/user-not-found') {
         alert('Debes registrarte para iniciar sesión');

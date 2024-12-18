@@ -69,7 +69,7 @@ export function NavBar() {
             </li>
 
             <li>
-              <Link to="/test">Test</Link>
+              <Link to="/subirdata">Test</Link>
             </li>
 
             <li>
