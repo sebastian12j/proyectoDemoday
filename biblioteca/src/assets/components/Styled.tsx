@@ -1,11 +1,11 @@
 import styled from "styled-components";
 
-export const NavBarContainer = styled.nav `
-  width: 1200px;
-  height: 70px;
-  padding: 0 40px;
+export const NavBarContainer = styled.nav`
+  width: 100%;
+  height: 60px;
+  padding: 8px;
   margin: 0;
-  background-color: #008037;
+  background-color: #5bc8ac;
   position: relative;
   display: flex;
   color: #ffff;
@@ -46,4 +46,5 @@ export const MenuUl = styled.ul`
 
 export const PSaludo = styled.p `
 text-align: center;
+
 `;

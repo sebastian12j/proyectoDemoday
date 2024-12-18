@@ -20,7 +20,7 @@ const Start: React.FC = () => {
         width: '1147px',
       }}
     >       
-            <img src={('https://res.cloudinary.com/anye/image/upload/v1734130135/EMPEZAR_odvdmd.png')} width={1140} />
+            <img src={('https://res.cloudinary.com/anye/image/upload/v1734130135/EMPEZAR_odvdmd.png')} width={1140} height={750}/>
             
             
     </div>

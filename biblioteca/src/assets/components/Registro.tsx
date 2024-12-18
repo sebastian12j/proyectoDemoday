@@ -30,20 +30,27 @@ const Registro: React.FC = () => {
   return (
     <div
       style={{
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '100px',
-        backgroundColor: '#d6dff2',
-        fontFamily: 'Arial',
+        display: "flex",
+        flexDirection: "column",
+        alignItems: "center",
+        justifyContent: "center",
+        padding: "100px",
+        background: "rgba(255, 255, 255, 0.5)",
+        fontFamily: "Arial",
         // width: '100%',
       }}
     >
-      <h1 style={{ color: '#3366ff', fontSize: '2.5rem', marginBottom: '70px', fontFamily: 'cursive' }}>
+      <h1
+        style={{
+          color: "#5bc8ac",
+          fontSize: "2.5rem",
+          marginBottom: "70px",
+          fontFamily: "cursive",
+        }}
+      >
         Registro
       </h1>
-      <div style={{ width: '250px' }}>
+      <div style={{ width: "250px" }}>
         <label>Email</label>
         <input
           type="email"
@@ -88,15 +95,15 @@ const Registro: React.FC = () => {
       </div>
       <button
         style={{
-          width: '200px',
-          padding: '10px',
-          backgroundColor: '#008037',
-          color: 'white',
-          border: 'none',
-          borderRadius: '17px',
-          fontSize: '1.2rem',
-          cursor: 'pointer',
-          marginTop: '20px',
+          width: "200px",
+          padding: "10px",
+          backgroundColor: "#5bc8ac",
+          color: "white",
+          border: "none",
+          borderRadius: "17px",
+          fontSize: "1.2rem",
+          cursor: "pointer",
+          marginTop: "20px",
         }}
         onClick={handleRegister}
       >

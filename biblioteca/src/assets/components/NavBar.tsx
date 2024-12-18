@@ -1,11 +1,29 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore"; // Importar funciones de Firestore
 import { Link } from "react-router-dom";
-import { useAuth } from "./AuthContext"; 
-import { db } from "../components/Credenciales"; 
-import {NavBarContainer} from "../components/Styled"
-import imagenes from "../img/Vamos (1).png";
-import {PSaludo} from "../components/Styled";
+import { useAuth } from "./AuthContext";
+import { db } from "../components/Credenciales";
+import { NavBarContainer, PSaludo } from "../components/Styled";
+
+import {
+  Box,
+  Button,
+  Divider,
+  Drawer,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemIcon,
+} from "@mui/material";
+import {
+  Checklist,
+  Favorite,
+  Home,
+  Logout,
+  Menu,
+  Person,
+  Quiz,
+} from "@mui/icons-material";
 
 // interface User {
 //   photoURL: string;
@@ -45,54 +63,118 @@ export function NavBar() {
     setMenuVisible(false);
   };
 
+  //*************Material UI**************** */
+  const [open, setOpen] = useState(false);
+
+  const toggleDrawer = (newOpen: boolean) => () => {
+    setOpen(newOpen);
+  };
+
+  const DrawerList = (
+    <Box
+      sx={{ width: 250, color: "#5bc8ac", textDecoration: "none" }}
+      role="presentation"
+      onClick={toggleDrawer(false)}
+    >
+      <List>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <Home style={{ color: "#5bc8ac", textDecoration: "none" }} />
+            </ListItemIcon>
+            <Link
+              style={{ color: "#5bc8ac", textDecoration: "none" }}
+              to="/inicio"
+            >
+              Inicio
+            </Link>
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <Quiz style={{ color: "#5bc8ac", textDecoration: "none" }} />
+            </ListItemIcon>
+            <Link
+              to="/subirdata"
+              style={{ color: "#5bc8ac", textDecoration: "none" }}
+            >
+              Test
+            </Link>
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <Favorite style={{ color: "#5bc8ac", textDecoration: "none" }} />
+            </ListItemIcon>
+            <Link
+              to="/favoritos"
+              style={{ color: "#5bc8ac", textDecoration: "none" }}
+            >
+              Favoritos
+            </Link>
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <Checklist style={{ color: "#5bc8ac", textDecoration: "none" }} />
+            </ListItemIcon>
+            <Link
+              style={{ color: "#5bc8ac", textDecoration: "none" }}
+              to="/calificaciones"
+            >
+              Calificaciones
+            </Link>
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <Person style={{ color: "#5bc8ac", textDecoration: "none" }} />
+            </ListItemIcon>
+            <Link
+              to="/perfil"
+              style={{ color: "#5bc8ac", textDecoration: "none" }}
+            >
+              Perfil
+            </Link>
+          </ListItemButton>
+        </ListItem>
+        <ListItem disablePadding>
+          <ListItemButton>
+            <ListItemIcon>
+              <Logout style={{ color: "#5bc8ac", textDecoration: "none" }} />
+            </ListItemIcon>
+            <Link
+              to="/login"
+              style={{ color: "#5bc8ac", textDecoration: "none" }}
+            >
+              Salir
+            </Link>
+          </ListItemButton>
+        </ListItem>
+      </List>
+      <Divider />
+    </Box>
+  );
   return (
     <NavBarContainer>
-      
-        <button className="abrir-menu" onClick={openMenu}>
-          <img
-            className="imagenes-perfil"
-            src={photoURL || imagenes}
-            alt="Abrir menú"
-          />
-        </button>
-
-        {/* Menú desplegable */}
-        <div className={`menu ${menuVisible ? "visible" : ""}`}>
-          <button className="cerrar-menu" onClick={closeMenu}>
-            <img className="imagenes-perfil" src={imagenes} alt="Cerrar menú" />
-          </button>
-
-          <ul className="menu-list">
-            <li>
-            <Link to="/inicio">Inicio</Link>
-
-            </li>
-
-            <li>
-              <Link to="/subirdata">Test</Link>
-            </li>
-
-            <li>
-              <Link to="/favoritos">Favoritos</Link>
-            </li>
-
-            <li>
-              <Link to="/calificaciones">Calificaciones</Link>
-            </li>
-
-            <li>
-            <Link to="/perfil">Perfil</Link>
-            </li>
-          </ul>
-        </div>
-
-
-        {/* Saludo y nombre */}
-
-        <PSaludo>Hola, {user?.displayName || "Usuario"}</PSaludo>
-
+      <div>
+        <Button style={{ color: "#fff" }} onClick={toggleDrawer(true)}>
+          <Menu />
+        </Button>
+        <Drawer open={open} onClose={toggleDrawer(false)}>
+          {DrawerList}
+        </Drawer>
+      </div>
+      <PSaludo>Hola, {user?.displayName || "Usuario"}</PSaludo>
     </NavBarContainer>
   );
 }
 
 export default NavBar;
+// function setOpen(newOpen: boolean) {
+//   throw new Error("Function not implemented.");
+// }

@@ -4,6 +4,7 @@ import "./index.css";
 import App from "./App";
 import { AuthProvider } from "./assets/components/AuthContext";  // Verifica la ruta aquí
 
+
 const rootElement = document.getElementById("root") as HTMLElement;
 
 createRoot(rootElement).render(
