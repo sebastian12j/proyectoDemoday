@@ -20,8 +20,8 @@ const Start: React.FC = () => {
         width: '1147px',
       }}
     >       
-            <img src={('https://res.cloudinary.com/anye/image/upload/v1734130135/EMPEZAR_odvdmd.png')} width={1140} />
-      
+            <img src={('https://res.cloudinary.com/anye/image/upload/v1733525436/Vamos_bhrt3o.png')} width={150} border-radius={1000} />
+            
             
     </div>
   );
