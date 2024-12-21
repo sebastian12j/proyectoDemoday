@@ -5,7 +5,7 @@ export const NavBarContainer = styled.nav`
   height: 60px;
   padding: 8px;
   margin: 0;
-  background-color: #5bc8ac;
+  background-image: linear-gradient(to left, #058af7, #5bc8ac);
   position: relative;
   display: flex;
   color: #ffff;
