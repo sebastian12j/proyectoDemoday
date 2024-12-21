@@ -15,15 +15,7 @@ import {
   ListItemButton,
   ListItemIcon,
 } from "@mui/material";
-import {
-  Checklist,
-  Favorite,
-  Home,
-  Logout,
-  Menu,
-  Person,
-  Quiz,
-} from "@mui/icons-material";
+import { Favorite, Home, Logout, Menu, Quiz, Sms } from "@mui/icons-material";
 
 // interface User {
 //   photoURL: string;
@@ -54,6 +46,8 @@ export function NavBar() {
 
     fetchUserData();
   }, [user]);
+
+  const userType = localStorage.getItem( "tipoUsuario");
 
   const openMenu = () => {
     setMenuVisible(true);
@@ -90,50 +84,41 @@ export function NavBar() {
             </Link>
           </ListItemButton>
         </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              <Quiz style={{ color: "#5bc8ac", textDecoration: "none" }} />
-            </ListItemIcon>
-            <Link
-              to="/subirdata"
-              style={{ color: "#5bc8ac", textDecoration: "none" }}
-            >
-              Test
-            </Link>
-          </ListItemButton>
-        </ListItem>
+        {userType === "docente" &&
+          <>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <Sms style={{ color: "#5bc8ac", textDecoration: "none" }} />
+                </ListItemIcon>
+                <Link
+                  style={{ color: "#5bc8ac", textDecoration: "none" }}
+                  to="/mensaje"
+                >
+                  Mensaje
+                </Link>
+              </ListItemButton>
+            </ListItem>
+            <ListItem disablePadding>
+              <ListItemButton>
+                <ListItemIcon>
+                  <Quiz style={{ color: "#5bc8ac", textDecoration: "none" }} />
+                </ListItemIcon>
+                <Link
+                  to="/subirdata"
+                  style={{ color: "#5bc8ac", textDecoration: "none" }}
+                >
+                  Test
+                </Link>
+              </ListItemButton>
+            </ListItem>
+          </>}
         <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon>
               <Favorite style={{ color: "#5bc8ac", textDecoration: "none" }} />
             </ListItemIcon>
-            <Link
-              to="/favoritos"
-              style={{ color: "#5bc8ac", textDecoration: "none" }}
-            >
-              Favoritos
-            </Link>
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              <Checklist style={{ color: "#5bc8ac", textDecoration: "none" }} />
-            </ListItemIcon>
-            <Link
-              style={{ color: "#5bc8ac", textDecoration: "none" }}
-              to="/calificaciones"
-            >
-              Calificaciones
-            </Link>
-          </ListItemButton>
-        </ListItem>
-        <ListItem disablePadding>
-          <ListItemButton>
-            <ListItemIcon>
-              <Person style={{ color: "#5bc8ac", textDecoration: "none" }} />
-            </ListItemIcon>
+
             <Link
               to="/perfil"
               style={{ color: "#5bc8ac", textDecoration: "none" }}
@@ -169,7 +154,7 @@ export function NavBar() {
           {DrawerList}
         </Drawer>
       </div>
-      <PSaludo>Hola, {user?.displayName || "Usuario"}</PSaludo>
+      <PSaludo>Hola, {user?.displayName || "Bienvenido"}</PSaludo>
     </NavBarContainer>
   );
 }

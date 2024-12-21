@@ -5,7 +5,7 @@ import { DivContainer, FormStyle } from "./Styled";
 import Swal from "sweetalert2";
 import { Modal, Button } from "react-bootstrap";
 import { collection, addDoc } from "firebase/firestore";
-import NavBar from "./NavBar";
+
 
 
 interface Pregunta {
@@ -128,7 +128,6 @@ export function SubirData() {
 
   return (
     <>
-      <NavBar />
       <div
         style={{
           display: "flex",

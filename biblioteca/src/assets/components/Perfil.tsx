@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import { FormStyle } from "./Styled";
-import NavBar from "./NavBar";
 import { Button } from "react-bootstrap";
 
 const Perfil: React.FC = () => {
@@ -56,7 +55,6 @@ const Perfil: React.FC = () => {
 
   return (
     <div>
-      <NavBar /> 
       <div
         style={{
           display: "flex",

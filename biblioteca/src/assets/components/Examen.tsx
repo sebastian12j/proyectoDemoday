@@ -1,7 +1,14 @@
 import { useEffect, useState, useRef } from "react";
-import { collection, getDocs } from "firebase/firestore";
+import Swal from "sweetalert2";
+import {
+  collection,
+  getDocs,
+  updateDoc,
+  arrayUnion,
+  doc,
+} from "firebase/firestore";
 import { db } from "./Credenciales";
-
+import { getAuth } from "firebase/auth";
 
 interface Opcion {
   texto: string;
@@ -14,11 +21,14 @@ interface Pregunta {
 }
 
 interface ExamenProps {
-  libroId: string; // ID del libro recibido como prop
+  libroId: string;
 }
 
 const Examen: React.FC<ExamenProps> = ({ libroId }) => {
   const [preguntas, setPreguntas] = useState<Pregunta[]>([]);
+  const [libroSeleccionado, setLibroSeleccionado] = useState<string | null>(
+    null
+  );
   const [cargando, setCargando] = useState(true);
   const [preguntaActual, setPreguntaActual] = useState(0);
   const [puntuacion, setPuntuacion] = useState(0);
@@ -35,20 +45,26 @@ const Examen: React.FC<ExamenProps> = ({ libroId }) => {
         const querySnapshot = await getDocs(collection(db, "libros"));
         const libroSeleccionado = querySnapshot.docs
           .map((doc) => ({ id: doc.id, ...doc.data() }))
-          .find((libro) => libro.id === libroId) as { preguntas: Pregunta[] } | undefined;
+          .find((libro) => libro.id === libroId) as
+          | { preguntas: Pregunta[] }
+          | undefined;
 
-        if (libroSeleccionado) setPreguntas(libroSeleccionado.preguntas);
-        else console.error("Libro no encontrado.");
+        if (libroSeleccionado) {
+          setPreguntas(libroSeleccionado.preguntas);
+          setLibroSeleccionado(libroSeleccionado.nombre);
+        } else {
+          console.error("Libro no encontrado.");
+        }
       } catch (error) {
         console.error("Error al obtener las preguntas:", error);
       } finally {
         setCargando(false);
       }
     };
+
     obtenerPreguntas();
   }, [libroId]);
 
-  
   useEffect(() => {
     if (!isFinished && !answersShown) {
       intervalRef.current = setInterval(() => {
@@ -70,15 +86,62 @@ const Examen: React.FC<ExamenProps> = ({ libroId }) => {
     if (esCorrecta) setPuntuacion((prev) => prev + 1);
     setAreDisabled(true);
     setTimeout(() => {
-      if (preguntaActual === preguntas.length - 1) setIsFinished(true);
-      else nextQuestion();
+      if (preguntaActual === preguntas.length - 1) {
+        setIsFinished(true);
+      } else {
+        nextQuestion();
+      }
     }, 1000);
   };
 
   const nextQuestion = () => {
     setPreguntaActual((prev) => prev + 1);
-    setTiempoRestante(30);
+    setTiempoRestante(10);
     setAreDisabled(false);
+  };
+
+  const guardarResultado = async () => {
+    const auth = getAuth();
+    const user = auth.currentUser;
+
+    if (!user) {
+      console.error("No se ha autenticado ningún usuario.");
+      return;
+    }
+
+    const resultado = {
+      libroId,
+      nombreLibro: libroSeleccionado,
+      puntuacion,
+      totalPreguntas: preguntas.length,
+      tiempoRestante,
+      fecha: new Date().toISOString(),
+    };
+
+    try {
+      const userRef = doc(db, "datausers", user.uid);
+      await updateDoc(userRef, {
+        resultadosExamenes: arrayUnion(resultado),
+      });
+
+      // Mensaje de éxito
+      Swal.fire({
+        title: "¡Éxito!",
+        text: "Sus respuestas han sido enviadas.",
+        icon: "success",
+        confirmButtonText: "Aceptar",
+      });
+    } catch (error) {
+      console.error("Error al guardar el resultado en Firebase:", error);
+
+      // Mensaje de error
+      Swal.fire({
+        title: "Error",
+        text: "Hubo un problema al enviar sus respuestas. Inténtelo de nuevo.",
+        icon: "error",
+        confirmButtonText: "Aceptar",
+      });
+    }
   };
 
   const resetExam = () => {
@@ -89,8 +152,7 @@ const Examen: React.FC<ExamenProps> = ({ libroId }) => {
     setAreDisabled(false);
     setAnswersShown(false);
   };
-
-  if (cargando) return <p className="loading">Cargando preguntas...</p>;
+if (cargando) return <p className="loading">Cargando preguntas...</p>;
 
   if (isFinished || answersShown) {
     return (
@@ -115,8 +177,13 @@ const Examen: React.FC<ExamenProps> = ({ libroId }) => {
         )}
         <div className="botones">
           <button onClick={resetExam}>Volver a Intentar</button>
-          {!answersShown && <button onClick={() => setAnswersShown(true)}>Ver Respuestas</button>}
+          {!answersShown && (
+            <button onClick={() => setAnswersShown(true)}>
+              Ver Respuestas
+            </button>
+          )}
         </div>
+        <button onClick={guardarResultado}>Enviar Resultados</button>
       </div>
     );
   }

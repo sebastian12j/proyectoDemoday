@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
-import { NavBar } from "../components/NavBar";
 import { Card, Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
 import { db } from "../components/Credenciales";
 import { collection, getDocs } from "firebase/firestore";
 import Examen from "../components/Examen";
+
 
 interface LibroData {
   id: string;
@@ -62,9 +62,9 @@ export function Inicio() {
 
   return (
     <div>
-      <NavBar />
       <br />
       <>
+
         <Row className="mt-4">
           {libroData.map((cuento) => (
             <Col>
