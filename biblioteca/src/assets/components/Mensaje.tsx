@@ -60,7 +60,11 @@ const Mensaje: React.FC = () => {
     <Container className="mt-5">
       <Row className="justify-content-center">
         <Col md={8} lg={6}>
-          <Card className="shadow-lg rounded-4 border-0">
+          <Card className="shadow-lg rounded-4 border-0"
+          style={{
+            width: "140%",
+            border: "0",
+          }}>
             <Card.Body>
               <h2
                 className="text-center mb-4"
@@ -150,6 +154,7 @@ const Mensaje: React.FC = () => {
                       fontSize: "16px",
                       fontWeight: "bold",
                       border: "none",
+                      gap: "10px",
                     }}
                   >
                     Enviar por WhatsApp
@@ -163,6 +168,8 @@ const Mensaje: React.FC = () => {
                       fontSize: "16px",
                       fontWeight: "bold",
                       border: "none",
+                      gap: "10px",
+                      backgroundColor: "red",
                     }}
                   >
                     Enviar por Correo
