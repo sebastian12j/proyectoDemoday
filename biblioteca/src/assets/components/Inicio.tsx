@@ -1,73 +1,28 @@
-import React, { useEffect, useState } from "react";
-import { Card } from "../components/Card";
-import { NavBar } from "../components/NavBar";
-import { Container, Row } from "react-bootstrap";
+import { useEffect, useState } from "react";
+import { Card, Col, Container, Row } from "react-bootstrap";
 import Button from "react-bootstrap/Button";
 import Modal from "react-bootstrap/Modal";
-import cuento1 from "../cuento1.jpg";
-import cuento2 from "../cuento2.avif";
-import cuento3 from "../cuento3.png";
-import cuento4 from "../cuento4.jpeg";
-import cuento5 from "../cuento5.jpg";
-import cuento6 from "../cuento6.avif";
-import cuento7 from "../cuento7.jpg";
+import { db } from "../components/Credenciales";
+import { collection, getDocs } from "firebase/firestore";
+import Examen from "../components/Examen";
 
-interface Cuento {
-  id: number;
-  title: string;
-  description: string;
+
+interface LibroData {
+  id: string;
+  nombre: string;
+  resumen: string;
   imgUrl: string;
+  link: string;
+  preguntas: string[];
 }
 
 export function Inicio() {
-  const cuentos: Cuento[] = [
-    {
-      id: 1,
-      title: "Cuento 1",
-      description: "Descripción detallada del cuento 1",
-      imgUrl: cuento1,
-    },
-    {
-      id: 2,
-      title: "Cuento 2",
-      description: "Descripción detallada del cuento 2",
-      imgUrl: cuento2,
-    },
-    {
-      id: 3,
-      title: "Cuento 3",
-      description: "Descripción detallada del cuento 3",
-      imgUrl: cuento3,
-    },
-    {
-      id: 4,
-      title: "Cuento 4",
-      description: "Descripción detallada del cuento 4",
-      imgUrl: cuento4,
-    },
-    {
-      id: 5,
-      title: "Cuento 5",
-      description: "Descripción detallada del cuento 5",
-      imgUrl: cuento5,
-    },
-    {
-      id: 6,
-      title: "Cuento 6",
-      description: "Descripción detallada del cuento 6",
-      imgUrl: cuento6,
-    },
-    {
-      id: 7,
-      title: "Cuento 7",
-      description: "Descripción detallada del cuento 7",
-      imgUrl: cuento7,
-    },
-  ];
+  const [selectedCuento, setSelectedCuento] = useState<LibroData | null>(null);
+  const [libroData, setLibroData] = useState<LibroData[]>([]);
+  const [showExamenModal, setShowExamenModal] = useState(false);
+  const [selectedLibroId, setSelectedLibroId] = useState<string | null>(null);
 
-  const [selectedCuento, setSelectedCuento] = useState<Cuento | null>(null);
-
-  const handleShowModal = (cuento: Cuento) => {
+  const handleShowModal = (cuento: LibroData) => {
     setSelectedCuento(cuento);
   };
 
@@ -75,54 +30,138 @@ export function Inicio() {
     setSelectedCuento(null);
   };
 
+  const handleShowExamenModal = (libroId: string) => {
+    setSelectedLibroId(libroId);
+    setShowExamenModal(true);
+  };
+
+  const handleCloseExamenModal = () => {
+    setSelectedLibroId(null);
+    setShowExamenModal(false);
+  };
+
   useEffect(() => {
-    console.log("Cuentos:", cuentos);
+    const fetchLibros = async () => {
+      try {
+        const librosCollectionRef = collection(db, "libros");
+        const librosSnapshot = await getDocs(librosCollectionRef);
+
+        const librosData = librosSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        })) as LibroData[];
+
+        setLibroData(librosData);
+      } catch (error) {
+        console.error("Error al obtener los libros:", error);
+      }
+    };
+
+    fetchLibros();
   }, []);
 
   return (
-    <Container>
-      <NavBar />
-
+    <div>
       <br />
+      <>
 
-      <Row>
-        {cuentos.map((cuento) => (
-          <Card
-            key={cuento.id}
-            title={cuento.title}
-            description={cuento.description}
-            imgUrl={cuento.imgUrl}
-            onClick={() => handleShowModal(cuento)} // Manejo del clic en la tarjeta
-          />
-        ))}
-      </Row>
+        <Row className="mt-4">
+          {libroData.map((cuento) => (
+            <Col>
+              {/* <Card              
+                key={cuento.id}
+                title={cuento.nombre}
+                description={cuento.resumen}
+                imgUrl={cuento.imgUrl}
+                onClick={() => handleShowModal(cuento)}
+              /> */}
+              <Card style={{ width: "10rem", margin: "5px" }}>
+                <Card.Img
+                  style={{ width: "9.9rem", height: "13rem" }}
+                  variant="top"
+                  src={cuento.imgUrl}
+                  onClick={() => handleShowModal(cuento)}
+                />
+                <p
+                  style={{
+                    fontSize: "10px",
+                    textAlign: "center",
+                    fontWeight: "bold",
+                  }}
+                >
+                  {cuento.nombre}
+                </p>
+              </Card>
+            </Col>
+          ))}
+        </Row>
 
-      {/* Modal para mostrar detalles */}
-      {selectedCuento && (
+        {selectedCuento && (
+          <Modal
+            show={true}
+            onHide={handleCloseModal}
+            backdrop="static"
+            keyboard={false}
+          >
+            <Modal.Header closeButton className="conteiner-modal-header">
+              <Modal.Title>{selectedCuento.nombre}</Modal.Title>
+            </Modal.Header>
+            <Modal.Body className="conteiner-modal-body">
+              <img
+                src={selectedCuento.imgUrl}
+                alt={selectedCuento.nombre}
+                style={{ width: "9.9rem", height: "13rem" }}
+              />
+              <p className="conteiner-modal-text">{selectedCuento.resumen}</p>
+            </Modal.Body>
+            <Modal.Footer className="custom-modal-footer">
+              {/* <Button
+                variant="secondary"
+                onClick={handleCloseModal}
+                className="modal-close-button"
+              >
+                Cerrar
+              </Button> */}
+              <Button variant="primary" style={{ background: "#5bc8ac" }}>
+                <a
+                  href={selectedCuento.link}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Leer más
+                </a>
+              </Button>
+              <Button
+                variant="primary"
+                className="modal-preguntas-button"
+                onClick={() => handleShowExamenModal(selectedCuento.id)}
+              >
+                Preguntas
+              </Button>
+            </Modal.Footer>
+          </Modal>
+        )}
+
         <Modal
-          show={true}
-          onHide={handleCloseModal}
+          show={showExamenModal}
+          onHide={handleCloseExamenModal}
           backdrop="static"
           keyboard={false}
+          size="lg"
         >
           <Modal.Header closeButton>
-            <Modal.Title>{selectedCuento.title}</Modal.Title>
+            <Modal.Title>Cuestionario</Modal.Title>
           </Modal.Header>
           <Modal.Body>
-            <img
-              src={selectedCuento.imgUrl}
-              alt={selectedCuento.title}
-              style={{ width: "100%", height: "auto", marginBottom: "1rem" }}
-            />
-            <p>{selectedCuento.description}</p>
+            {selectedLibroId && <Examen libroId={selectedLibroId} />}
           </Modal.Body>
           <Modal.Footer>
-            <Button variant="secondary" onClick={handleCloseModal}>
+            <Button variant="secondary" onClick={handleCloseExamenModal}>
               Cerrar
             </Button>
           </Modal.Footer>
         </Modal>
-      )}
-    </Container>
+      </>
+    </div>
   );
 }

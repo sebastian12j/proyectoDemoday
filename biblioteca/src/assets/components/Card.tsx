@@ -7,14 +7,15 @@ interface CardProps {
   onClick: () => void; 
 }
 
-export const Card: React.FC<CardProps> = ({ title, description, imgUrl, onClick }) => {
+export const Card: React.FC<CardProps> = ({ title, imgUrl, onClick }) => {
   return (
     <Col
-      size={12}
-      sm={6}
-      md={4}
+      size={9}
+      sm={8}
+      md={10}
       style={{
         display: "flex",
+        flexWrap: "wrap",
         justifyContent: "center", 
         alignItems: "center", 
         cursor: "pointer", 
@@ -26,13 +27,16 @@ export const Card: React.FC<CardProps> = ({ title, description, imgUrl, onClick 
           src={imgUrl}
           alt={title}
           style={{
-            margin: "0 auto", 
+            
+            margin: "5%", 
             borderRadius: "8px",
+            width: "500px",
+            height: "100px",
           }}
         />
-        <div className="proj-txtx" style={{ textAlign: "center", marginTop: "10px" }}>
+        <div className="proj-txtx" style={{ textAlign: "center", margin: "5px", width: "50000px" }}>
           <h4>{title}</h4>
-          <span>{description}</span>
+          {/* <span>{description}</span> */}
         </div>
       </div>
     </Col>

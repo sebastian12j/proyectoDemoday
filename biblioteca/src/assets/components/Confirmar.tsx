@@ -14,8 +14,10 @@ const Confirmar: React.FC = () => {
     if (user) {
       try {
         await updatePassword(user, password);
+        localStorage.setItem('documentType', documentType);
+        localStorage.setItem('documentNumber', documentNumber);
         alert('Confirmación exitosa');
-        navigate('/');
+        navigate('/inicio');
       } catch (error: any) {
         alert('Error al confirmar: ' + error.message);
       }
@@ -33,13 +35,13 @@ const Confirmar: React.FC = () => {
         justifyContent: 'center',
         height: '100vh',
         backgroundColor: '#d6dff2',
-        fontFamily: 'Arial, sans-serif',
+        fontFamily: 'arial',
       }}
     >
-      <h1 style={{ color: '#3366ff', fontSize: '2.5rem', marginBottom: '20px' }}>
+      <h1 style={{ color: '#3366ff', fontSize: '2.5rem', marginBottom: '20px', fontFamily: 'cursive' }}>
         Confirmar Registro
       </h1>
-      <div style={{ width: '300px' }}>
+      <div style={{ width: '1148px' }}>
         <label>Tipo de documento</label>
         <input
           type="text"
@@ -69,7 +71,7 @@ const Confirmar: React.FC = () => {
         style={{
           width: '200px',
           padding: '10px',
-          backgroundColor: '#28a745',
+          backgroundColor: '#008037',
           color: 'white',
           border: 'none',
           borderRadius: '5px',

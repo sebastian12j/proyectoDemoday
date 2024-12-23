@@ -7,28 +7,68 @@ import {
   User,
 } from "firebase/auth";
 import { auth, db } from "../components/Credenciales";
-import { doc, setDoc, updateDoc, arrayUnion } from "firebase/firestore";
+import { doc, setDoc, updateDoc, arrayUnion, getDoc } from "firebase/firestore";
 
-// Definición de la interfaz para el contexto
-interface AuthContextType {
-  user: User | null;
-  googleSignIn: () => Promise<void>;
-  logOut: () => Promise<void>;
-  addExercise: (exercise: string) => Promise<void>;
+interface FirestoreUser {
+  email: string | null;
+  displayName: string | null;
+  photoURL: string | null;
+  createdAt: Date;
+  librosSubidos: {
+    id: number;
+    nombre: string;
+    resumen: string;
+    imgUrl: string;
+    preguntas: string[];
+    respuestas: string[];
+    link: string;
+  }[];
 }
 
-// Crear el contexto
+interface AuthContextType {
+  user: User | null;
+  loading: boolean;
+  googleSignIn: () => Promise<void>;
+  logOut: () => Promise<void>;
+  addLibro: (libro: FirestoreUser["librosSubidos"][0]) => Promise<void>;
+}
+
 const AuthContext = createContext<AuthContextType | undefined>(undefined);
 
-// Definición de los props del proveedor
 interface AuthProviderProps {
   children: ReactNode;
 }
 
-// Componente AuthProvider
 export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
   const [user, setUser] = useState<User | null>(null);
+  const [loading, setLoading] = useState<boolean>(true);
 
+  // Función para sincronizar datos del usuario en Firestore
+  const syncUserData = async (currentUser: User) => {
+    const userRef = doc(db, "datausers", currentUser.uid);
+    const docSnap = await getDoc(userRef);
+
+    if (!docSnap.exists()) {
+      const newUser: FirestoreUser = {
+        email: currentUser.email,
+        displayName: currentUser.displayName,
+        photoURL: currentUser.photoURL,
+        createdAt: new Date(),
+        librosSubidos: [],
+      };
+      await setDoc(userRef, newUser);
+      console.log("Nuevo usuario creado en Firestore:", newUser);
+    } else {
+      await updateDoc(userRef, {
+        email: currentUser.email,
+        displayName: currentUser.displayName,
+        photoURL: currentUser.photoURL,
+      });
+      console.log("Datos del usuario actualizados en Firestore.");
+    }
+  };
+
+  // Función para manejar Google Sign-In
   const googleSignIn = async () => {
     const provider = new GoogleAuthProvider();
     try {
@@ -36,21 +76,14 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
       const loggedUser = result.user;
       setUser(loggedUser);
 
-      // Guardar usuario en Firestore
-      const userDoc = {
-        email: loggedUser.email,
-        displayName: loggedUser.displayName,
-        photoURL: loggedUser.photoURL,
-        createdAt: new Date(),
-        exercises: [] as string[], // Especificamos que es un array de strings
-      };
-      await setDoc(doc(db, "users", loggedUser.uid), userDoc, { merge: true });
-      console.log("Usuario guardado en Firestore:", userDoc);
+      // Sincronizar datos del usuario en Firestore
+      await syncUserData(loggedUser);
     } catch (error) {
       console.error("Error en Google Sign-In:", (error as Error).message);
     }
   };
 
+  // Función para cerrar sesión
   const logOut = async () => {
     try {
       await signOut(auth);
@@ -61,34 +94,41 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
     }
   };
 
-  const addExercise = async (exercise: string) => {
-    if (!user) return; // Verificamos si hay un usuario autenticado
+  // Función para agregar un libro a Firestore
+  const addLibro = async (libro: FirestoreUser["librosSubidos"][0]) => {
+    if (!user) return; // Asegurar que haya un usuario autenticado
     try {
-      const userRef = doc(db, "users", user.uid);
+      const userRef = doc(db, "datausers", user.uid);
       await updateDoc(userRef, {
-        exercises: arrayUnion(exercise), // Agregamos el ejercicio al array
+        librosSubidos: arrayUnion(libro), // Agregar libro a la colección del usuario
       });
-      console.log("Ejercicio agregado:", exercise);
+      console.log("Libro agregado:", libro);
     } catch (error) {
-      console.error("Error al agregar ejercicio:", (error as Error).message);
+      console.error("Error al agregar libro:", (error as Error).message);
     }
   };
 
+  // Efecto para manejar cambios de autenticación y sincronización con Firestore
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
+      if (currentUser) {
+        await syncUserData(currentUser);
+      }
       setUser(currentUser);
+      setLoading(false); // Detener estado de carga
     });
+
     return () => unsubscribe();
   }, []);
 
   return (
-    <AuthContext.Provider value={{ user, googleSignIn, logOut, addExercise }}>
+    <AuthContext.Provider value={{ user, loading, googleSignIn, logOut, addLibro }}>
       {children}
     </AuthContext.Provider>
   );
 };
 
-// Hook personalizado para usar el contexto
+// Hook para usar el contexto de autenticación
 export const useAuth = (): AuthContextType => {
   const context = useContext(AuthContext);
   if (!context) {

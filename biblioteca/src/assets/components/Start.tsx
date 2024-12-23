@@ -1,26 +1,28 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Login from './Login';
+
 
 const Start: React.FC = () => {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    navigate('/login'); // Redirige a la ruta "/login"
+    navigate('/Login'); // Redirige a la ruta "/login"
   };
 
   return (
     <div
+    
       onClick={handleClick}
       style={{
         display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        height: '100vh',
         cursor: 'pointer',
-        backgroundColor: '#f5f5f5'
+        width: '1147px',
       }}
-    >
-      <h1>READ VAMOS A LEER</h1>
+    >       
+            <img src={('https://res.cloudinary.com/anye/image/upload/v1734130135/EMPEZAR_odvdmd.png')} width={1140} height={750}/>
+            
+            
     </div>
   );
 };
