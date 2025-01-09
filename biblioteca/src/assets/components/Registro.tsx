@@ -216,8 +216,3 @@ const iconStyle: React.CSSProperties = {
 };
 
 export default Registro;
-
-
-
-
-
