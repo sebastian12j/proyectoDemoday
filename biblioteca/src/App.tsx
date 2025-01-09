@@ -1,55 +1,99 @@
-<<<<<<<<< Temporary merge branch 1
-import { useState } from "react";
-import { NavBar } from "./assets/components/NavBar";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
-import { Inicio } from "./assets/components/Inicio"
+import { Routes, Route, Navigate } from "react-router-dom";
+import Correo from "./assets/components/Correo";
+import Mensaje from "./assets/components/Mensaje";
+import Start from "./assets/components/Start";
+import Login from "./assets/components/Login";
+import Registro from "./assets/components/Registro";
+import Confirmar from "./assets/components/Confirmar";
+import { Inicio } from "./assets/components/Inicio";
+import { SubirData } from "./assets/components/SubirData";
+import Perfil from "./assets/components/Perfil";
+import { useAuth } from "./assets/components/AuthContext";
+import Docentes from "./assets/components/Docentes";
+import Navbar from "./assets/components/NavBar";
 
-function App() {
-  return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/navbar" element={<NavBar />} />
-        <Route path="/inicio" element={<Inicio />} />
-      </Routes>
-    </BrowserRouter>
-  );
+interface RequireAuthProps {
+  children: JSX.Element;
 }
 
-export default App;
-=========
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Start from '../src/assets/components/Start';
-import Login from '../src/assets/components/Login';
-import { initializeApp, getApps } from 'firebase/app';
-import { getAuth } from 'firebase/auth';
-import firebaseConfig from '../src/credenciales';
-import Registro from './assets/components/Registro';
-import Confirmar from './assets/components/Confirmar';
-// Verifica si ya existe una instancia de Firebase
-if (!getApps().length) {
-  initializeApp(firebaseConfig);
+function RequireAuth({ children }: RequireAuthProps): JSX.Element {
+  const { user } = useAuth();
+  return user ? children : <Navigate to="/login" replace />;
 }
 
-const auth = getAuth();
+const AppWithoutOutlet: React.FC = () => {
+  const { user } = useAuth();
 
-const App: React.FC = () => {
   return (
-    <Router>
+    <div>
+      {user && <Navbar />}
+
       <Routes>
+        {/* Rutas públicas */}
         <Route path="/" element={<Start />} />
-        <Route path="/start" element={<Start />} />
         <Route path="/login" element={<Login />} />
         <Route path="/registro" element={<Registro />} />
-        <Route path="/confirmar" element={<Confirmar />} />
+
+        {/* Rutas protegidas */}
+        <Route
+          path="/perfil"
+          element={
+            <RequireAuth>
+              <Perfil />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/inicio"
+          element={
+            <RequireAuth>
+              <Inicio />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/confirmar"
+          element={
+            <RequireAuth>
+              <Confirmar />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/docentes"
+          element={
+            <RequireAuth>
+              <Docentes />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/correo"
+          element={
+            <RequireAuth>
+              <Correo />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/mensaje"
+          element={
+            <RequireAuth>
+              <Mensaje />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/subirdata"
+          element={
+            <RequireAuth>
+              <SubirData />
+            </RequireAuth>
+          }
+        />
       </Routes>
-    </Router>
+    </div>
   );
 };
 
-export default App;
-
-
- 
-
->>>>>>>>> Temporary merge branch 2
+export default AppWithoutOutlet;
