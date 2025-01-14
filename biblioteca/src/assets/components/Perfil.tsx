@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { FormStyle } from "./Styled";
+
 import { Button } from "react-bootstrap";
 
 const Perfil: React.FC = () => {

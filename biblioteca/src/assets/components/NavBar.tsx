@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { useEffect, useState } from "react";
 import { doc, getDoc } from "firebase/firestore"; // Importar funciones de Firestore
 import { Link } from "react-router-dom";
@@ -17,14 +18,10 @@ import {
 } from "@mui/material";
 import { Favorite, Home, Logout, Menu, Quiz, Sms } from "@mui/icons-material";
 
-// interface User {
-//   photoURL: string;
-// }
-
 export function NavBar() {
-  const [menuVisible, setMenuVisible] = useState(false);
-  const [photoURL, setPhotoURL] = useState<string | null>(null);
+  const [, setPhotoURL] = useState<string | null>(null);
   const { user } = useAuth();
+
   useEffect(() => {
     if (!user) return;
 
@@ -47,17 +44,9 @@ export function NavBar() {
     fetchUserData();
   }, [user]);
 
-  const userType = localStorage.getItem( "tipoUsuario");
+  const userType = localStorage.getItem("tipoUsuario");
 
-  const openMenu = () => {
-    setMenuVisible(true);
-  };
-
-  const closeMenu = () => {
-    setMenuVisible(false);
-  };
-
-  //*************Material UI**************** */
+  // Estado para el Drawer de Material UI
   const [open, setOpen] = useState(false);
 
   const toggleDrawer = (newOpen: boolean) => () => {
@@ -84,7 +73,7 @@ export function NavBar() {
             </Link>
           </ListItemButton>
         </ListItem>
-        {userType === "docente" &&
+        {userType === "docente" && (
           <>
             <ListItem disablePadding>
               <ListItemButton>
@@ -112,7 +101,8 @@ export function NavBar() {
                 </Link>
               </ListItemButton>
             </ListItem>
-          </>}
+          </>
+        )}
         <ListItem disablePadding>
           <ListItemButton>
             <ListItemIcon>
@@ -144,6 +134,7 @@ export function NavBar() {
       <Divider />
     </Box>
   );
+
   return (
     <NavBarContainer>
       <div>
@@ -160,6 +151,3 @@ export function NavBar() {
 }
 
 export default NavBar;
-// function setOpen(newOpen: boolean) {
-//   throw new Error("Function not implemented.");
-// }

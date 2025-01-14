@@ -41,12 +41,12 @@ const estilos = {
     fontWeight: "bold",
   },
   loadingText: {
-    textAlign: "center",
-    fontSize: "1.2rem",
+    textAlign: "center" as "center",
+    fontSize: "1.2rem" as "1.2rem",
   },
   errorText: {
-    textAlign: "center",
-    fontSize: "1.2rem",
+    textAlign: "center" as "center",
+    fontSize: "1.2rem" as "1.2rem",
   },
   selectUser: {
     width: "50%",
@@ -95,7 +95,8 @@ const Docentes: React.FC = () => {
           timestamp: doc.data().timestamp?.toDate() || new Date(),
         }));
 
-        setRespuestas(respuestasData as Respuesta[]);
+        setRespuestas(respuestasData as unknown as Respuesta[]);
+
         setLoading(false);
       } catch (error) {
         console.error("Error al obtener los datos:", error);

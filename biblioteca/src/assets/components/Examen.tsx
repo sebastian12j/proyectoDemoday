@@ -46,7 +46,7 @@ const Examen: React.FC<ExamenProps> = ({ libroId }) => {
         const libroSeleccionado = querySnapshot.docs
           .map((doc) => ({ id: doc.id, ...doc.data() }))
           .find((libro) => libro.id === libroId) as
-          | { preguntas: Pregunta[] }
+          | { preguntas: Pregunta[], nombre: string }
           | undefined;
 
         if (libroSeleccionado) {
@@ -152,7 +152,8 @@ const Examen: React.FC<ExamenProps> = ({ libroId }) => {
     setAreDisabled(false);
     setAnswersShown(false);
   };
-if (cargando) return <p className="loading">Cargando preguntas...</p>;
+
+  if (cargando) return <p className="loading">Cargando preguntas...</p>;
 
   if (isFinished || answersShown) {
     return (

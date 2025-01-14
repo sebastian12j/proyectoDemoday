@@ -18,8 +18,12 @@ const Confirmar: React.FC = () => {
         localStorage.setItem('documentNumber', documentNumber);
         alert('Confirmación exitosa');
         navigate('/inicio');
-      } catch (error: any) {
-        alert('Error al confirmar: ' + error.message);
+      } catch (error: unknown) {
+        if (error instanceof Error) {
+          alert('Error al confirmar: ' + error.message);
+        } else {
+          alert('Error al confirmar');
+        }
       }
     } else {
       alert('No hay usuario autenticado');

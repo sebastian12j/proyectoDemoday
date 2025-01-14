@@ -1,4 +1,4 @@
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Correo from "./assets/components/Correo";
 import Mensaje from "./assets/components/Mensaje";
 import Start from "./assets/components/Start";
@@ -23,10 +23,11 @@ function RequireAuth({ children }: RequireAuthProps): JSX.Element {
 
 const AppWithoutOutlet: React.FC = () => {
   const { user } = useAuth();
+  const location = useLocation();
 
   return (
     <div>
-      {user && <Navbar />}
+      {user && location.pathname !== "/login" && location.pathname !== "/registro" && <Navbar />}
 
       <Routes>
         {/* Rutas públicas */}
@@ -97,3 +98,4 @@ const AppWithoutOutlet: React.FC = () => {
 };
 
 export default AppWithoutOutlet;
+

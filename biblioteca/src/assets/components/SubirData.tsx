@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useAuth } from "./AuthContext";
 import { db } from "./Credenciales";
-import { DivContainer, FormStyle } from "./Styled";
+import {  FormStyle } from "./Styled";
 import Swal from "sweetalert2";
 import { Modal, Button } from "react-bootstrap";
 import { collection, addDoc } from "firebase/firestore";

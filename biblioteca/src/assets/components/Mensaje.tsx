@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import React, { useState, useRef } from "react";
 import { Container, Row, Col, Card, Form, Button } from "react-bootstrap";
 import emailjs from "emailjs-com";
@@ -8,7 +9,6 @@ const Mensaje: React.FC = () => {
   const [telefono, setTelefono] = useState("");
   const formRef = useRef<HTMLFormElement>(null);
 
-  
   const enviarCorreo = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -24,7 +24,7 @@ const Mensaje: React.FC = () => {
 
     if (formRef.current) {
       try {
-        const res = await emailjs.sendForm(
+        await emailjs.sendForm(
           "service_8fzhazk", 
           "template_sp9u4ir",
           formRef.current, 
@@ -98,7 +98,6 @@ const Mensaje: React.FC = () => {
                   />
                 </Form.Group>
 
-                
                 <Form.Group className="mb-4" controlId="email">
                   <Form.Label>
                     <b>Correo Electrónico</b>
@@ -120,7 +119,6 @@ const Mensaje: React.FC = () => {
                   />
                 </Form.Group>
 
-                
                 <Form.Group className="mb-4" controlId="mensaje">
                   <Form.Label>
                     <b>Mensaje</b>
@@ -143,7 +141,6 @@ const Mensaje: React.FC = () => {
                   />
                 </Form.Group>
 
-                
                 <div className="d-flex justify-content-between">
                   <Button
                     variant="success"
